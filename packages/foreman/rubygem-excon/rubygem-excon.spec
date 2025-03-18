@@ -2,7 +2,7 @@
 %global gem_name excon
 
 Name: rubygem-%{gem_name}
-Version: 0.112.0
+Version: 1.2.5
 Release: 1%{?dist}
 Summary: speed, persistence, http(s)
 License: MIT
@@ -15,6 +15,8 @@ BuildRequires: ruby >= 2.7.0
 BuildRequires: rubygems-devel
 BuildArch: noarch
 # end specfile generated dependencies
+
+Requires: (rubygem(logger) or ruby-default-gems < 3.5)
 
 Requires: ca-certificates
 
@@ -32,6 +34,8 @@ Documentation for %{name}.
 
 %prep
 %setup -q -n  %{gem_name}-%{version}
+
+%gemspec_remove_dep -g logger
 
 %build
 # Create the gem as gem install only works on a gem file
@@ -66,6 +70,9 @@ ln -sf /etc/pki/tls/cert.pem \
 %exclude %{gem_instdir}/excon.gemspec
 
 %changelog
+* Tue Mar 18 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.2.5-1
+- Update to 1.2.5
+
 * Wed Oct 02 2024 Foreman Packaging Automation <packaging@theforeman.org> - 0.112.0-1
 - Update to 0.112.0
 
