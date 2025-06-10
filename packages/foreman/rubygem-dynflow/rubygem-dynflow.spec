@@ -2,7 +2,7 @@
 %global gem_name dynflow
 
 Name: rubygem-%{gem_name}
-Version: 1.9.1
+Version: 1.9.2
 Release: 1%{?dist}
 Summary: DYNamic workFLOW engine
 License: MIT
@@ -15,6 +15,8 @@ BuildRequires: ruby >= 2.7.0
 BuildRequires: rubygems-devel
 BuildArch: noarch
 # end specfile generated dependencies
+
+Requires: (rubygem(csv) or ruby-default-gems < 3.4)
 
 # Optional dependency that we always pull in
 Requires: %{?scl_prefix}rubygem(statsd-instrument)
@@ -34,6 +36,8 @@ Documentation for %{name}.
 
 %prep
 %setup -q -n  %{gem_name}-%{version}
+
+%gemspec_remove_dep -g csv
 
 %build
 # Create the gem as gem install only works on a gem file
@@ -75,6 +79,9 @@ cp -a .%{gem_dir}/* \
 %{gem_instdir}/test
 
 %changelog
+* Sun Jun 08 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.9.2-1
+- Update to 1.9.2
+
 * Sun Apr 13 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.9.1-1
 - Update to 1.9.1
 
