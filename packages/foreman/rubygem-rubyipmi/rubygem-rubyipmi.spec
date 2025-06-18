@@ -2,8 +2,8 @@
 %global gem_name rubyipmi
 
 Name: rubygem-%{gem_name}
-Version: 0.11.1
-Release: 2%{?dist}
+Version: 0.12.0
+Release: 1%{?dist}
 Summary: A ruby wrapper for ipmi command line tools that supports ipmitool and freeipmi
 License: LGPLv2.1
 URL: https://github.com/logicminds/rubyipmi
@@ -15,6 +15,9 @@ BuildRequires: ruby
 BuildRequires: rubygems-devel
 BuildArch: noarch
 # end specfile generated dependencies
+
+Requires: (rubygem(logger) or ruby-default-gems < 3.5)
+Requires: (rubygem(observer) or ruby-default-gems < 3.4)
 
 Requires: ipmitool
 
@@ -32,6 +35,9 @@ Documentation for %{name}.
 
 %prep
 %setup -q -n  %{gem_name}-%{version}
+
+%gemspec_remove_dep -g logger
+%gemspec_remove_dep -g observer
 
 %build
 # Create the gem as gem install only works on a gem file
@@ -57,12 +63,16 @@ cp -a .%{gem_dir}/* \
 %files doc
 %doc %{gem_docdir}
 %{gem_instdir}/Gemfile
+%doc %{gem_instdir}/CONTRIBUTORS.md
 %doc %{gem_instdir}/README.md
 %doc %{gem_instdir}/RELEASE_NOTES.md
 %{gem_instdir}/Rakefile
 %exclude %{gem_instdir}/rubyipmi.gemspec
 
 %changelog
+* Wed Jun 18 2025 Foreman Packaging Automation <packaging@theforeman.org> - 0.12.0-1
+- Update to 0.12.0
+
 * Tue Mar 12 2024 Ewoud Kohl van Wijngaarden <ewoud@kohlvanwijngaarden.nl> - 0.11.1-2
 - Add back ipmitool dependency
 
