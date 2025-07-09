@@ -495,6 +495,7 @@ foreman_nodejs_packages:
       name: "@theforeman/vendor"
     nodejs-tslib: {}
     nodejs-unleash-proxy-client: {}
+    nodejs-unleash-proxy-client-react: {}
     nodejs-urijs: {}
     nodejs-use-deep-compare-effect: {}
     nodejs-uuid: {}
