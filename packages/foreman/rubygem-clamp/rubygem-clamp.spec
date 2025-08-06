@@ -2,7 +2,7 @@
 %global gem_name clamp
 
 Name: rubygem-%{gem_name}
-Version: 1.3.2
+Version: 1.3.3
 Release: 1%{?dist}
 Summary: a minimal framework for command-line utilities
 License: MIT
@@ -10,8 +10,10 @@ URL: https://github.com/mdub/clamp
 Source0: https://rubygems.org/gems/%{gem_name}-%{version}.gem
 
 # start specfile generated dependencies
-Requires: ruby
-BuildRequires: ruby
+Requires: ruby >= 2.5
+Requires: ruby < 4
+BuildRequires: ruby >= 2.5
+BuildRequires: ruby < 4
 BuildRequires: rubygems-devel
 BuildArch: noarch
 # end specfile generated dependencies
@@ -53,6 +55,7 @@ cp -a .%{gem_dir}/* \
 %exclude %{gem_instdir}/.rubocop.yml
 %exclude %{gem_instdir}/.travis.yml
 %doc %{gem_instdir}/CHANGES.md
+%exclude %{gem_instdir}/CODEOWNERS
 %exclude %{gem_instdir}/Guardfile
 %license %{gem_instdir}/LICENSE
 %{gem_libdir}
@@ -70,6 +73,9 @@ cp -a .%{gem_dir}/* \
 %{gem_instdir}/spec
 
 %changelog
+* Wed Aug 06 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.3.3-1
+- Update to 1.3.3
+
 * Fri May 05 2023 Foreman Packaging Automation <packaging@theforeman.org> 1.3.2-1
 - Update to 1.3.2
 
