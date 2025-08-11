@@ -2,7 +2,7 @@
 %global gem_name formatador
 
 Name: rubygem-%{gem_name}
-Version: 1.1.1
+Version: 1.2.0
 Release: 1%{?dist}
 Summary: Ruby STDOUT text formatting
 License: MIT
@@ -15,6 +15,8 @@ BuildRequires: ruby
 BuildRequires: rubygems-devel
 BuildArch: noarch
 # end specfile generated dependencies
+
+Requires: (rubygem(reline) or ruby-default-gems < 3.5)
 
 %description
 STDOUT text formatting.
@@ -30,6 +32,8 @@ Documentation for %{name}.
 
 %prep
 %setup -q -n  %{gem_name}-%{version}
+
+%gemspec_remove_dep -g reline
 
 %build
 # Create the gem as gem install only works on a gem file
@@ -64,6 +68,9 @@ cp -a .%{gem_dir}/* \
 %{gem_instdir}/tests
 
 %changelog
+* Sun Aug 10 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.2.0-1
+- Update to 1.2.0
+
 * Sun Jul 13 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.1.1-1
 - Update to 1.1.1
 
