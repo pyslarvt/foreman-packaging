@@ -3,7 +3,7 @@
 %global gem_require_name %{gem_name}
 
 Name: rubygem-%{gem_name}
-Version: 1.5.9
+Version: 1.6.1
 Release: 1%{?dist}
 Summary: Pg is the Ruby interface to the PostgreSQL RDBMS
 # Upstream license clarification (https://bitbucket.org/ged/ruby-pg/issue/72/)
@@ -16,8 +16,8 @@ URL: https://github.com/ged/ruby-pg
 Source0: https://rubygems.org/gems/%{gem_name}-%{version}.gem
 
 # start specfile generated dependencies
-Requires: ruby >= 2.5
-BuildRequires: ruby-devel >= 2.5
+Requires: ruby >= 2.7
+BuildRequires: ruby-devel >= 2.7
 BuildRequires: rubygems-devel
 # Compiler is required for build of gem binary extension.
 # https://fedoraproject.org/wiki/Packaging:C_and_C++#BuildRequires_and_Requires
@@ -76,25 +76,13 @@ rm -rf gem_ext_test
 %files
 %dir %{gem_instdir}
 %{gem_extdir_mri}
-%exclude %{gem_instdir}/.appveyor.yml
-%exclude %{gem_instdir}/.gems
-%exclude %{gem_instdir}/.gemtest
-%exclude %{gem_instdir}/.github
-%exclude %{gem_instdir}/.gitignore
-%exclude %{gem_instdir}/.hgsigs
-%exclude %{gem_instdir}/.hgtags
-%exclude %{gem_instdir}/.irbrc
-%exclude %{gem_instdir}/.pryrc
-%exclude %{gem_instdir}/.tm_properties
-%exclude %{gem_instdir}/.travis.yml
 %exclude %{gem_instdir}/BSDL
 %license %{gem_instdir}/LICENSE
-%exclude %{gem_instdir}/Manifest.txt
 %license %{gem_instdir}/POSTGRES
 %exclude %{gem_instdir}/certs
 %{gem_libdir}
 %exclude %{gem_instdir}/misc
-%exclude %{gem_instdir}/translation
+%exclude %{gem_instdir}/ports
 %exclude %{gem_cache}
 %{gem_spec}
 
@@ -102,18 +90,20 @@ rm -rf gem_ext_test
 %doc %{gem_docdir}
 %doc %{gem_instdir}/Contributors.rdoc
 %{gem_instdir}/Gemfile
-%doc %{gem_instdir}/History.md
+%doc %{gem_instdir}/CHANGELOG.md
 %doc %{gem_instdir}/README-OS_X.rdoc
 %doc %{gem_instdir}/README-Windows.rdoc
 %doc %{gem_instdir}/README.ja.md
 %doc %{gem_instdir}/README.md
 %{gem_instdir}/Rakefile
-%{gem_instdir}/Rakefile.cross
 %{gem_instdir}/rakelib
 %{gem_instdir}/sample
 %exclude %{gem_instdir}/pg.gemspec
 
 %changelog
+* Wed Aug 27 2025 Foreman Packaging Automation <packaging@theforeman.org> - 1.6.1-1
+- Update to 1.6.1
+
 * Sun Oct 27 2024 Foreman Packaging Automation <packaging@theforeman.org> - 1.5.9-1
 - Update to 1.5.9
 
